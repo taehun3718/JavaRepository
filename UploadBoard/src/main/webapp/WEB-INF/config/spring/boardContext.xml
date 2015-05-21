@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans	xmlns="http://www.springframework.org/schema/beans"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.springframework.org/schema/beans 
+							http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<bean	id="boardService"
+			class="com.ktds.christof.bbs.service.impl.BoardServiceImpl">	
+			<property name="boardDAO" ref="boardDAO"/>
+	</bean>
+	
+	<bean	id="boardDAO"
+			class="com.ktds.christof.bbs.dao.impl.BoardDAOImpl">	
+			<property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>
+	</bean>
+	
+</beans>

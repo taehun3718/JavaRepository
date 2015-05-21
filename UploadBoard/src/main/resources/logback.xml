@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration>
+<!-- <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<pattern>
+				▶ %-5level %d{HH:mm:ss.SSS} [%thread] %logger[%method:%line] -%msg%n
+			</pattern>
+		</encoder>
+	</appender>
+	
+	<appender name="consoleForLoginInterceptor" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<pattern>
+				▷ %-5level %d{HH:mm:ss} %logger[%method:%line] -%msg%n
+			</pattern>
+		</encoder>
+	</appender>
+-->
+
+	<appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<pattern>
+				[%-5level] %d{HH:mm:ss.SSS} [%thread] %logger[%method:%line] -%msg%n
+			</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="file" class="ch.qos.logback.core.FileAppender">
+		<file>d:\boardLog.log</file>
+		<encoder>
+			<pattern>
+				[%-5level] %d{HH:mm:ss.SSS} [%thread] %logger[%method:%line] -%msg%n
+			</pattern>
+		</encoder>
+	</appender>
+	
+	<appender name="fileForLoginInterceptor" 
+			class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>d:\logFile.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>d:\boardLog.%d{yyyy-MM-dd-HH}.log</fileNamePattern>
+			<maxHistory>30</maxHistory>
+		</rollingPolicy>
+		<encoder>
+			<pattern>
+				[%-5level] %d{HH:mm:ss} %logger[%method:%line] -%msg%n
+			</pattern>
+		</encoder>
+	</appender>
+
+	<logger name="org.springframework" level="info" />
+	<logger name="com.mchange" level="info" />
+	
+	<logger name="com.ktds.mcjang.intercept.LoginInterceptor" level="info">
+		<appender-ref ref="fileForLoginInterceptor" />
+	</logger>
+	
+	<root level="info">
+		<appender-ref ref="console" />
+		<appender-ref ref="file" />
+	</root>
+	
+</configuration>

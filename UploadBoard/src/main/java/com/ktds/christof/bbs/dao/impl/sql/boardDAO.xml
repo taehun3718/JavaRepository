@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+				"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="boardDAO">
+
+	<insert id="writeArticle">
+		INSERT INTO BOARD (
+		ID
+		, SUBJECT
+		, CONTENT
+		, UPLOAD_FILE
+		, UPLOAD_FILE_TWO
+		, UPLOAD_FILE_UUID
+		, UPLOAD_FILE_TWO_UUID
+		)
+		VALUES ( BOARD_IDX_SEQ.NEXTVAL
+		, #{subject}
+		, #{content}
+		, #{realfileNameOne}
+		, #{realfileNameTwo}
+		, #{uuIdNameOne}
+		, #{uuIdNameTwo}
+		)
+	</insert>
+
+	<resultMap type="BoardVO" id="articleListMap">
+		<result property="id"				column="ID"/>
+		<result property="subject"			column="SUBJECT"/>
+		<result property="content"			column="CONTENT"/>
+		<result property="realfileNameOne"	column="UPLOAD_FILE"/>
+		<result property="realfileNameTwo"	column="UPLOAD_FILE_TWO"/>
+		<result property="uuIdNameOne"		column="UPLOAD_FILE_UUID"/>
+		<result property="uuIdNameTwo"		column="UPLOAD_FILE_UUID"/>
+	</resultMap>
+
+	<select id="articleList" resultMap="articleListMap">
+		SELECT	ID
+			, SUBJECT
+			, CONTENT
+			, UPLOAD_FILE
+			, UPLOAD_FILE_TWO
+			, UPLOAD_FILE_UUID
+			, UPLOAD_FILE_TWO_UUID
+		FROM 	BOARD
+	</select>
+	
+	<resultMap type="BoardVO" id="articleDetailByIdMap">
+		<result property="id"				column="ID"/>
+		<result property="subject"			column="SUBJECT"/>
+		<result property="content"			column="CONTENT"/>
+		<result property="realfileNameOne"	column="UPLOAD_FILE"/>
+		<result property="realfileNameTwo"	column="UPLOAD_FILE_TWO"/>
+		<result property="uuIdNameOne"		column="UPLOAD_FILE_UUID"/>
+		<result property="uuIdNameTwo"		column="UPLOAD_FILE_TWO_UUID"/>
+	</resultMap>
+
+	<select id="articleDetail"
+			parameterType="string"
+			resultMap="articleDetailByIdMap">
+		SELECT	ID
+			, SUBJECT
+			, CONTENT
+			, UPLOAD_FILE
+			, UPLOAD_FILE_TWO
+			, UPLOAD_FILE_UUID
+			, UPLOAD_FILE_TWO_UUID
+		FROM 	BOARD
+		WHERE	ID=#{id}
+	</select>
+	
+</mapper>
+
+
+
+
+
+
+
