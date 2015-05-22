@@ -98,7 +98,7 @@ public class GeneratePagingQuery {
 		for(i=0; i<columnSize; i++) {
 			col = columns.get(i);
 			if(i==0) {
-				q3 += "\t\t" + col.getColumnName() + "\n";
+				q3 += "\t" + col.getColumnName() + "\n";
 			}
 			else {
 				q3 += "\t\t\t\t\t\t\t, " + col.getColumnName() + "\n";
