@@ -111,6 +111,7 @@ public class GeneratePagingQuery {
 		q3 += "\t\t)\n";
 		q += q2 + q3;
 		q +="WHERE\tRNUM >= #{startPagingNumber}\n";
+		
 		return q;
 	}
 
