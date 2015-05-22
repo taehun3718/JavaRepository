@@ -73,8 +73,8 @@ public class GeneratePagingQuery {
 	
 	public String getPagingQuery() {
 		String q = "SELECT";
-		String q2 = "\t\tSELECT\tROWNUM AS RNUM, A.*\n";
-		String q3 = "\t\t\tSELECT";
+		String q2 = "\t\t\tSELECT\tROWNUM AS RNUM, A.*\n";
+		String q3 = "\t\t\t\t\t\tSELECT";
 		
 		String firstColumn="";
 		int i;
@@ -87,30 +87,30 @@ public class GeneratePagingQuery {
 				q += "\t" + col.getColumnName() + "\n";
 			}
 			else {
-				q += "\t\t, " + col.getColumnName() + "\n";
+				q += "\t, " + col.getColumnName() + "\n";
 			}
 		}
 		q += "FROM\t(\n";
 		
-		q2 += "\t\tFROM\t(\n";
+		q2 += "\t\t\tFROM\t(\n";
 		
 		//SUB QUERY
 		for(i=0; i<columnSize; i++) {
 			col = columns.get(i);
 			if(i==0) {
-				q3 += "\t" + col.getColumnName() + "\n";
+				q3 += "\t\t" + col.getColumnName() + "\n";
 			}
 			else {
-				q3 += "\t\t\t\t, " + col.getColumnName() + "\n";
+				q3 += "\t\t\t\t\t\t\t, " + col.getColumnName() + "\n";
 			}
 		}
-		q3 += "\t\t\tFROM\t" + this.tableName+"\n";
-		q3 += "\t\t\tORDER\tBY\t"+firstColumn+"\tDESC\n";
-		q3 += "\t\t\t\t) A\n";
-		q3 += "\t\tWHERE\tROWNUM <= <![CDATA[<=]]> #{endPagingNumber}\n";
+		q3 += "\t\t\t\t\t\tFROM\t" + this.tableName+"\n";
+		q3 += "\t\t\t\t\t\tORDER\tBY\t"+firstColumn+"\tDESC\n";
+		q3 += "\t\t\t\t\t) A\n";
+		q3 += "\t\t\tWHERE\tROWNUM <= <![CDATA[<=]]> #{endPagingNumber}\n";
 		q3 += "\t\t)\n";
 		q += q2 + q3;
-		q +="WHERE\tRNUM\t>= #{startPagingNumber}\n";
+		q +="WHERE\tRNUM >= #{startPagingNumber}\n";
 		return q;
 	}
 
