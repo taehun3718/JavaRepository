@@ -42,7 +42,6 @@ class GeneratePagingQueryWindow extends Frame{
 		label.setText("Query 추가");
 		label.setFont(new Font("Serif", Font.PLAIN, 15));
 		
-		
 		btnAdd = new Button();
 		btnAdd2 = new Button();
 		
