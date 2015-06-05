@@ -107,7 +107,7 @@ public class GeneratePagingQuery {
 		q3 += "\t\t\t\t\t\tFROM\t" + this.tableName+"\n";
 		q3 += "\t\t\t\t\t\tORDER\tBY\t"+firstColumn+"\tDESC\n";
 		q3 += "\t\t\t\t\t) A\n";
-		q3 += "\t\t\tWHERE\tROWNUM <= <![CDATA[<=]]> #{endPagingNumber}\n";
+		q3 += "\t\t\tWHERE\tROWNUM <![CDATA[<=]]> #{endPagingNumber}\n";
 		q3 += "\t\t)\n";
 		q += q2 + q3;
 		q +="WHERE\tRNUM >= #{startPagingNumber}\n";
