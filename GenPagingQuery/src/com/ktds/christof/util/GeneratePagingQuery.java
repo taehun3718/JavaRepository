@@ -41,15 +41,16 @@ public class GeneratePagingQuery {
 	}
 	
 	public void addColumn(Column column) {
-		if(numOfColunms==0 && column.getQueryType()!=QueryType.NUMBER) {
-			throw new InitializeException("첫번째 쿼리 타입은 NUMBER 타입이어야만 합니다.");
-		}
 		columns.add(column);
 		numOfColunms++;
 	}
 	
 	public void refreshColumns() {
 		columns.removeAll(columns);
+	}
+	
+	public void removeRecentColumnOne() {
+		columns.remove(columns.size()-1);
 	}
 	
 	public String getSelectQuery() {
