@@ -19,7 +19,7 @@
 			<th>다운로드1</th>
 			<th>다운로드2</th>
 		</tr>
-		<c:forEach var="board" items="${boardList }">
+		<c:forEach var="board" items="${boardList.boardList }">
 			<tr class="boardList">
 				<td>${board.id }</td>
 				<td>${board.realfileNameOne}</td>
@@ -33,6 +33,7 @@
 			</tr>
 		</c:forEach>
 	</table>
+	${boardList.paging.getPagingList("pageNo", "[@]", "[이전]", "[다음]", "")}<br/>
 	<h2>파일 업로드</h2>
 	<form id="uploadForm" name="uploadForm" method="POST"
 		enctype="multipart/form-data" action="<c:url value="/doWrite"/>">

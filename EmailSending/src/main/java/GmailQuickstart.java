@@ -1,22 +1,21 @@
-
 /**
- * Google Gmail API¸¦ ÀÌ¿ëÇÑ ¸ŞÀÏ Àü¼Û
+ * Google Gmail APIë¥¼ ì´ìš©í•œ ë©”ì¼ ì „ì†¡
  * 
  * 2015-05-20 
  * 
  * @author TaeHoon Kim(Christof-kim)
  * 
  * TODO:
- * 	Step1. Google Site¿¡¼­ API-Project »ı¼º (¿¹Á¦ : stone-host-95102)
+ * 	Step1. Google Siteì—ì„œ API-Project ìƒì„± (ì˜ˆì œ : stone-host-95102)
  * 
  *  Step2. https://console.developers.google.com/project/stone-host-95102
  *  
- *  ¿¡¼­ APIs & auth --> Credentials --> Create new Client ID »ı¼º
- *  Step3. Installed Application --> Others --> Create Client ID »ı¼º
+ *  ì—ì„œ APIs & auth --> Credentials --> Create new Client ID ìƒì„±
+ *  Step3. Installed Application --> Others --> Create Client ID ìƒì„±
  *  
- *  Step4. Client ID for native application Ä«Å×°í¸®ÀÇ Download JSON Å¬¸¯(ÀÎÁõ ÆÄÀÏ ´Ù¿îµÊ)
+ *  Step4. Client ID for native application ì¹´í…Œê³ ë¦¬ì˜ Download JSON í´ë¦­(ì¸ì¦ íŒŒì¼ ë‹¤ìš´ë¨)
  *  
- *  Step5. ÇÊ¿äÇÑ maven repository ¼³Á¤
+ *  Step5. í•„ìš”í•œ maven repository ì„¤ì •
  *  
  *  <dependencies>
 		<dependency>
@@ -41,28 +40,28 @@
 		</dependency>
 	</dependencies>
 	
-	Step6. API¿¡ Á¢±ÙÇÏ±â À§ÇÑ ±ÇÇÑ ¼³Á¤
+	Step6. APIì— ì ‘ê·¼í•˜ê¸° ìœ„í•œ ê¶Œí•œ ì„¤ì •
 	
 	public class GmailQuickstart { 
 	 	
 	 	...
 	 	
 		private static final List<String> SCOPES = Arrays
-				.asList(GmailScopes.GMAIL_LABELS	//¶óº§±ÇÇÑ
-						,GmailScopes.GMAIL_INSERT	//µ¥ÀÌÅÍ »ğÀÔ ±ÇÇÑ
-						,GmailScopes.GMAIL_MODIFY	//µ¥ÀÌÅÍ ¼öÁ¤ ±ÇÇÑ
-						,GmailScopes.GMAIL_COMPOSE	//µ¥ÀÌÅÍ COMPOSSE
-						,GmailScopes.MAIL_GOOGLE_COM);	//GMAIL GOOGLE ±ÇÇÑ
+				.asList(GmailScopes.GMAIL_LABELS	//ë¼ë²¨ê¶Œí•œ
+						,GmailScopes.GMAIL_INSERT	//ë°ì´í„° ì‚½ì… ê¶Œí•œ
+						,GmailScopes.GMAIL_MODIFY	//ë°ì´í„° ìˆ˜ì • ê¶Œí•œ
+						,GmailScopes.GMAIL_COMPOSE	//ë°ì´í„° COMPOSSE
+						,GmailScopes.MAIL_GOOGLE_COM);	//GMAIL GOOGLE ê¶Œí•œ
 	}
 	
-	Step7. ´Ù¿î¹ŞÀº client_secret.json(ÀÌ¸§ º¯°æ ÇÊ¿ä)À» src/main/resources¿¡ »ğÀÔ
+	Step7. ë‹¤ìš´ë°›ì€ client_secret.json(ì´ë¦„ ë³€ê²½ í•„ìš”)ì„ src/main/resourcesì— ì‚½ì…
 	
-	Step8. / ¹Ş´Â »ç¶÷ /  º¸³»´Â »ç¶÷ / ¸ŞÀÏ Á¦¸ñ  / ¸ŞÀÏ ³»¿ë Àû°í ½ÇÇà.. ³¡. 
+	Step8. / ë°›ëŠ” ì‚¬ëŒ /  ë³´ë‚´ëŠ” ì‚¬ëŒ / ë©”ì¼ ì œëª©  / ë©”ì¼ ë‚´ìš© ì ê³  ì‹¤í–‰.. ë. 
 	
-									¹Ş´Â »ç¶÷ / 				º¸³»´Â »ç¶÷ 			/ ¸ŞÀÏ Á¦¸ñ/			 ¸ŞÀÏ ³»¿ë /
-	MimeMessage mm = createEmail("taehun3718@naver.com","taehun3718@gmail.com", "¹¹Áö!? Å×½ºÆ®ÀÔ´Ï´Ù.", "Å×½ºÆ®");
+									ë°›ëŠ” ì‚¬ëŒ / 				ë³´ë‚´ëŠ” ì‚¬ëŒ 			/ ë©”ì¼ ì œëª©/			 ë©”ì¼ ë‚´ìš© /
+	MimeMessage mm = createEmail("taehun3718@naver.com","taehun3718@gmail.com", "ë­ì§€!? í…ŒìŠ¤íŠ¸ì…ë‹ˆë‹¤.", "í…ŒìŠ¤íŠ¸");
 				
-							gmail°èÁ¤			
+							gmailê³„ì •			
 	sendMessage(service, "taehun3718@gmail.com", mm);
  *  
  */
@@ -288,7 +287,7 @@ public class GmailQuickstart {
 		Gmail service = getGmailService();
 
 		MimeMessage mm = createEmail("taehun3718@naver.com",
-				"taehun3718@gmail.com", "¹¹Áö!? Å×½ºÆ®ÀÔ´Ï´Ù.", "Å×½ºÆ®");
+				"taehun3718@gmail.com", "ë­ì§€!? í…ŒìŠ¤íŠ¸ì…ë‹ˆë‹¤.", "í…ŒìŠ¤íŠ¸");
 		sendMessage(service, "taehun3718@gmail.com", mm);
 
 	}

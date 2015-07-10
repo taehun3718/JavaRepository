@@ -34,15 +34,32 @@
 		<result property="uuIdNameTwo"		column="UPLOAD_FILE_UUID"/>
 	</resultMap>
 
-	<select id="articleList" resultMap="articleListMap">
+	<select id="articleListByCount" resultMap="articleListMap">
 		SELECT	ID
-			, SUBJECT
+		FROM 	BOARD
+	</select>
+	<select id="articleList" parameterType="BoardSearchVO" resultMap="articleListMap">
+		SELECT	ID
 			, CONTENT
 			, UPLOAD_FILE
 			, UPLOAD_FILE_TWO
 			, UPLOAD_FILE_UUID
 			, UPLOAD_FILE_TWO_UUID
-		FROM 	BOARD
+		FROM	(
+					SELECT	ROWNUM AS RNUM, A.*
+					FROM	(
+								SELECT	ID
+									, CONTENT
+									, UPLOAD_FILE
+									, UPLOAD_FILE_TWO
+									, UPLOAD_FILE_UUID
+									, UPLOAD_FILE_TWO_UUID
+								FROM	BOARD
+								ORDER	BY	ID	DESC
+							) A
+					WHERE	ROWNUM <![CDATA[<=]]> #{paging.endArticleNumber}
+				)
+		WHERE	RNUM >= #{paging.startArticleNumber}
 	</select>
 	
 	<resultMap type="BoardVO" id="articleDetailByIdMap">
