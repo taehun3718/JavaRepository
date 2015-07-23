@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+				"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+				
+<mapper namespace="boardDAO">
+	<resultMap type="BoardVO" id="boardMap">
+		<result property="id"		column="ID"/>
+		<result property="content"	column="SUBJECT"/>
+		<result property="subject"	column="CONTENT"/>
+	</resultMap>
+	
+	<select id="getBoardList" resultMap="boardMap">
+		SELECT	ID	
+			, SUBJECT
+			, CONTENT
+		FROM	BOARD
+	</select>
+	
+	<select id="getDataFromId"
+			parameterType="string"
+			resultMap="boardMap">
+		SELECT	ID	
+			, SUBJECT
+			, CONTENT
+		FROM	BOARD
+		WHERE	id = #{boardId}
+		
+	</select>
+</mapper>

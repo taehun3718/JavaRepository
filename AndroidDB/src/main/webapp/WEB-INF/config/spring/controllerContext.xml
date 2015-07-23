@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans	xmlns="http://www.springframework.org/schema/beans"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.springframework.org/schema/beans 
+							http://www.springframework.org/schema/beans/spring-beans.xsd">
+		
+	<bean	id="dbController"
+			class="com.ktds.web.DBController">	
+			<property name="dbLoaderService" ref="dbService"></property>
+	</bean>
+	
+	<bean	id="dbService"
+			class="com.ktds.service.impl.DBLoaderServiceImpl">	
+			<property name="dbLoaderDAO" ref="dbDAO"></property>
+	</bean>
+	
+	<bean	id="dbDAO"
+			class="com.ktds.dao.impl.DBLoaderDAOImpl">
+			<property name="sqlSessionTemplate" ref="sqlSessionTemplate"></property>
+	</bean>
+
+</beans>
